@@ -12,7 +12,6 @@ app.use(bodyParser.urlencoded({extended:true}))
 // Route Home
     // Get method
 app.get('/', (req, res)=>{
-    console.log('Get request received')
     res.sendFile(__dirname+'/signup.html')
 })
 
@@ -35,14 +34,12 @@ app.post('/', (req, res)=>{
     const jsonData = JSON.stringify(data)
 
     // Mailchimp List Id
-        // 76f76c720d
     const url = `https://us21.api.mailchimp.com/3.0/lists/${config.env.list}`
 
     // Mailchimp API
-        // ccd4136d286fd2c448f4c88c8307436d-us21
     const options = {
         method: "POST",
-        auth: `edusundaymorning:${config.env.key}`
+        auth: `${config.env.user}:${config.env.key}`
     }
 
     const request = https.request(url, options, (response)=>{
@@ -55,7 +52,6 @@ app.post('/', (req, res)=>{
         
         response.on("data", (data)=>{
             console.log(JSON.parse(data))
-
         })
     })    
 
@@ -72,5 +68,5 @@ app.post('/failure', (req, res)=>{
 
 // Spin up server
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log('Listening to port 3000')
+    console.log('Server Up')
 })
