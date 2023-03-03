@@ -36,7 +36,7 @@ app.post('/', (req, res)=>{
 
     // Mailchimp List Id
         // 76f76c720d
-    const url = "https://us21.api.mailchimp.com/3.0/lists/76f76c720d"
+    const url = `https://us21.api.mailchimp.com/3.0/lists/${config.env.list}`
 
     // Mailchimp API
         // ccd4136d286fd2c448f4c88c8307436d-us21
