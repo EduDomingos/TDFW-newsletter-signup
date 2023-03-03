@@ -1,8 +1,8 @@
 
 const express = require('express')
-const request = require('request')
 const bodyParser = require('body-parser')
 const https = require('https')
+const config = require('./config')
 
 const app = express()
 
@@ -42,7 +42,7 @@ app.post('/', (req, res)=>{
         // ccd4136d286fd2c448f4c88c8307436d-us21
     const options = {
         method: "POST",
-        auth: "edusundaymorning:ccd4136d286fd2c448f4c88c8307436d-us210"
+        auth: `edusundaymorning:${config.env.key}`
     }
 
     const request = https.request(url, options, (response)=>{
